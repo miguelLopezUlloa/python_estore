@@ -1,0 +1,9 @@
+Generic single-database configuration.
+
+flask db init
+
+flask db migrate
+
+flask db stamp head
+
+flask db update

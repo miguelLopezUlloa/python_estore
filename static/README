@@ -1,0 +1,12 @@
+Generic single-database configuration.
+
+Proceso que se tiene que relizar cuando haya algun cambio en la estructura
+de la base de datos
+
+flask db init
+
+flask db migrate
+
+flask db stamp head
+
+flask db update
