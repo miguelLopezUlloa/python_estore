@@ -39,7 +39,7 @@ function addInfoByCustomer(id, name, lastname, email) {
 
     if (obj.timeout || obj.timeout === 0) {
       setTimeout(function() { 
-        $(elem).alert('close');
+        $('#alertBox').alert('close');
       }, obj.timeout);    
     }
 

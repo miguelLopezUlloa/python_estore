@@ -53,6 +53,8 @@ function customerAddRequest(e) {
   var lastnameCustomer = document.getElementById('addCustomerLastname').value;
   var emailCustomer = document.getElementById('email1').value;
 
+  var tableCustomer = document.getElementById(customersTable);
+
   /* var outputCusto = nameCustomer + " " + lastnameCustomer + " " + emailCustomer;
   alert(outputCusto); */
 
@@ -69,7 +71,9 @@ function customerAddRequest(e) {
   })
   .then((response) => {
     showAlert({message: 'Customer has been Added.', class:"success", timeout:1000});
+
     resultElement.innerHTML = generateSuccessHTMLOutput(response);
+    tableCustomer.bootstrapTable('refresh');
   })
   .catch(function (error) {
     resultElement.innerHTML = generateErrorHTMLOutput(error);
@@ -87,6 +91,8 @@ function customerEditRequest() {
   var lastnameCustomer = document.getElementById('inputEditLastname').value;
   var emailCustomer = document.getElementById('inputEditMail').value;
 
+  var tableCustomer = document.getElementById(customersTable);
+
   resultElement.innerHTML = '';
 
   axios({
@@ -100,7 +106,9 @@ function customerEditRequest() {
   })
   .then((response) => {
     showAlert({message: 'Customer has been edited sucesfully.', class:"success", timeout:1000});
+
     resultElement.innerHTML = generateSuccessHTMLOutput(response);
+    tableCustomer.bootstrapTable('refresh');
   })
   .catch(function (error) {
     resultElement.innerHTML = generateErrorHTMLOutput(error);
@@ -114,6 +122,7 @@ function deleteCustomerById(){
   
   console.log("Listo para borrar el id:", customerId);
   var resultElement = document.getElementById('DeleteCustomerResult');
+  var tableCustomer = document.getElementById(customersTable);
 
   var DELETE_CUSTOMER = 'http://localhost:5000/api/v1/customers/' + customerId
 
@@ -130,6 +139,7 @@ function deleteCustomerById(){
 
       hiddeDeleteModal();
       //resultElement.innerHTML = generateSuccessHTMLOutput(response);
+      tableCustomer.bootstrapTable('refresh');
 
   })
   .catch(function (error) {

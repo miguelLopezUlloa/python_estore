@@ -4,7 +4,6 @@
 
 <html lang="en">
 
-<!--<script src = "static/js/customers.js"></script>-->
 <script src = "static/js/apioperations.js"></script>
 <script src = "static/js/guioperations.js"></script>
 
@@ -13,68 +12,65 @@
     <title>Customers Catalog</title>
 </head>
 <body>
+      <div style="height: 510px; overflow-y: auto">
+            <div class="d-flex p-3 bg-secondary text-white">
+                    <!--<div class="p-2 bg-info">Manage customers</div> -->
+                    <div class="col-sm-9">
+                        <h2>Manage <b>Customers</b></h2>
+                    </div>
+                    <button type="button" id="btnCustomer" class="pull-right btn btn-primary customer-add"
+                            data-action="add"
+                            data-toggle="modal"
+                            data-target="#customerModal">
+                        <span class="fa fa-address-card"></span>Add a new Customer
+                    </button>
+                    <!-- <div class="p-2 bg-warning">Flex item 2</div>
+                     <div class="p-2 bg-primary">Manage Customers</div>-->
+            </div>
 
-  <div class="d-flex p-3 bg-secondary text-white">
-        <!--<div class="p-2 bg-info">Manage customers</div> -->
-        <div class="col-sm-9">
-						<h2>Manage <b>Employees</b></h2>
-				</div>
-        <button type="button" id="btnCustomer" class="pull-right btn btn-primary customer-add"
-                data-action="add"
-                data-toggle="modal"
-                data-target="#customerModal" >
-            <span class="fa fa-address-card"></span>Add a new Customer
-        </button>
-        <!-- <div class="p-2 bg-warning">Flex item 2</div>
-         <div class="p-2 bg-primary">Manage Customers</div>-->
-  </div>
+            <table id='customersTable' class="table table-hover table-striped table-dark table-fixed">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                <script>
+                    addInfoByCustomer({{ customer.id}},"{{ customer.name}}", "{{ customer.lastname}}", "{{ customer.email}}");
+                </script>
+                <tr class="table-active">
+                    <th scope="row">{{ customer.id }}</th>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.lastname }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>
+                        <button data-action='edit' id="btnEdit1"
+                                data-action="edit"
+                                data-toggle="modal"
+                                data-target="#customerEditModal"
+                                onclick="getCustomerRequest({{ customer.id }});"
+                                class='btn btn-primary btn-sm product-edit'>
+                            <span class='fa fa-edit'></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class='btn btn-danger btn-sm product-delete' data-toggle="modal"
+                                onclick='searchIdDelete({{ customer.id }},this)' data-target="#deleteModal">
+                            <!--<span class='glyphicon glyphicon-trash'></span>-->
+                            <i class="fa fa-trash-alt"></i>
+                        </button>
+                    </td>
 
-
-  <!--<div style="height:100px;overflow-y:scroll;;"> -->
-    <table id='customersTable'  class="table table-hover table-striped table-dark table-fixed">
-        <thead>
-
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Last name</th>
-            <th scope="col">email</th>
-            <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for customer in customers %}
-    <script>
-        addCustomer({{ customer.id}},"{{ customer.name}}");
-        console.log(customers);
-    </script>
-        <tr class="table-active">
-            <th scope="row">{{ customer.id }}</th>
-            <td>{{ customer.name }}</td>
-            <td>{{ customer.lastname }}</td>
-            <td>{{ customer.email }}</td>
-            <td>
-                <button data-action='edit' id="btnEdit1"
-                        data-action="edit"
-                        data-toggle="modal"
-                        data-target="#customerEditModal"
-                        onclick="getCustomerRequest({{ customer.id }});" class='btn btn-primary btn-sm product-edit'>
-                    <span class='fa fa-edit'></span>
-                </button>
-            </td>
-            <td>
-                <button class='btn btn-danger btn-sm product-delete' data-toggle="modal" 
-                        onclick='searchIdDelete({{ customer.id }},this)' data-target="#deleteModal" >
-                    <!--<span class='glyphicon glyphicon-trash'></span>-->
-                    <i class="fa fa-trash-alt"></i>
-                </button>
-            </td>
-
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-  <!--</div> -->
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+      </div> 
 
 <!-- The Modal for Add Customers-->
  <form class="needs-validation" novalidate>

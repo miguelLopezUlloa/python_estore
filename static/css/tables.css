@@ -1,8 +1,0 @@
-.table-fixed thead {
-    width: 97%;
-}
-.table-fixed tbody {
-    height: 200px;
-    overflow-y: auto;
-    width: 100%;
-}
